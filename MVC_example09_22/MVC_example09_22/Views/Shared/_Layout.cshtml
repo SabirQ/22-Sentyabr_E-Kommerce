@@ -1,4 +1,10 @@
-﻿<!doctype html>
+﻿@inject MVC_example09_22.Services.LayoutService service
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@{
+    var basket = @service.GetBasket().Result;
+}
+<!doctype html>
 <html class="no-js" lang="en">
 
 
@@ -100,7 +106,7 @@
                                 <div class="cart">
                                     <a href="#miniCart" class="header-action-item toolbar-btn">
                                         <i class="icon-rt-basket-outline"></i>
-                                        <span class="wishlist-count">3</span>
+                                        <span class="wishlist-count">@basket.Count()</span>
                                     </a>
                                 </div>
                             </div>
@@ -599,7 +605,7 @@
                             <div class="cart">
                                 <a href="#miniCart" class="header-action-item toolbar-btn">
                                     <i class="icon-rt-basket-outline"></i>
-                                    <span class="wishlist-count">3</span>
+                                    <span class="wishlist-count">@basket.Count()</span>
                                 </a>
                             </div>
                         </div>
@@ -699,42 +705,32 @@
             <div class="minicart-content">
                 <h6 class="mini-cart-title">YOUR CART</h6>
                 <ul class="minicart-list">
-                    <li class="minicart-product">
-                        <a class="product-item_img">
-                            <img class="img-fluid" src="~/images/products/cart/cart-1.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-item_content">
-                            <a class="product-item_title" href="product-details.html">Plant pots</a>
-                            <label class="product-item_quantity"><span>1</span> x<span> $20.00</span></label>
-                        </div>
-                        <a class="product-item_remove" href="javascript:void(0)"><i class="icon-rt-close-outline"></i></a>
-                    </li>
-                    <li class="minicart-product">
-                        <a class="product-item_img">
-                            <img class="img-fluid" src="~/images/products/cart/cart-2.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-item_content">
-                            <a class="product-item_title" href="product-details.html">Teapot with black tea</a>
-                            <label class="product-item_quantity"><span>1</span> x<span> $20.00</span></label>
-                        </div>
-                        <a class="product-item_remove" href="javascript:void(0)"><i class="icon-rt-close-outline"></i></a>
-                    </li>
-                    <li class="minicart-product">
-                        <a class="product-item_img">
-                            <img class="img-fluid" src="~/images/products/cart/cart-3.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-item_content">
-                            <a class="product-item_title" href="product-details.html">Simple Chair</a>
-                            <label class="product-item_quantity"><span>1</span> x<span> $20.00</span></label>
-                        </div>
-                        <a class="product-item_remove" href="javascript:void(0)"><i class="icon-rt-close-outline"></i></a>
-                    </li>
+                    @{
+                        decimal total = 0;
+                    }
+                    @foreach (var item in basket)
+                    {
+                        <li class="minicart-product">
+                            <a class="product-item_img">
+                                <img style="max-width:100px" class="img-fluid" src="~/images/products/@item.Product.ProductImages.FirstOrDefault(x=>x.Primary==true)?.Name"
+                            alt="@item.Product.ProductImages.FirstOrDefault(x=>x.Primary==true)?.Alt">
+                            </a>
+                            <div class="product-item_content">
+                                <a class="product-item_title" href="product-details.html">Plant pots</a>
+                                <label class="product-item_quantity"><span>@item.Count</span> x<span> $@item.Price</span></label>
+                            </div>
+                            <a asp-controller="home" asp-action="removebasket" asp-route-id="@item.Product.Id" class="product-item_remove"><i class="icon-rt-close-outline"></i></a>
+                        </li>
+
+                        { total += (decimal)(item.Price * item.Count);}
+
+                    }
 
                 </ul>
             </div>
             <div class="minicart-item_total">
                 <span class="font-weight--reguler">Subtotal:</span>
-                <span class="ammount font-weight--reguler">$60.00</span>
+                <span class="ammount font-weight--reguler">$@total</span>
             </div>
             <div class="minicart-btn_area">
                 <a href="shopping-cart.html" class="btn btn--full btn--primary">View cart</a>

@@ -3,8 +3,8 @@
 <div class="single-product-item">
     <div class="single-product-item-image">
         <a href="product-details.html" class="prodcut-images">
-            <img class="primary-image" src="~/images/products/@Model.ProductImages.FirstOrDefault(x=>x.Primary==true).Name" alt="@Model.ProductImages.FirstOrDefault(x=>x.Primary==true).Alt">
-            <img class="secondary-image" src="~/images/products/@Model.ProductImages.FirstOrDefault(x=>x.Primary==false).Name" alt="@Model.ProductImages.FirstOrDefault(x=>x.Primary==false).Alt">
+            <img class="primary-image" src="~/images/products/@Model.ProductImages.FirstOrDefault(x=>x.Primary==true)?.Name" alt="@Model.ProductImages.FirstOrDefault(x=>x.Primary==true)?.Alt">
+            <img class="secondary-image" src="~/images/products/@Model.ProductImages.FirstOrDefault(x=>x.Primary==false)?.Name" alt="@Model.ProductImages.FirstOrDefault(x=>x.Primary==false)?.Alt">
         </a>
         <ul class="single-product-item-action">
             <li class="single-product-item-action-list">
@@ -14,7 +14,7 @@
                 <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick-view-modal" class="single-product-item-action-link"><i class="icon-rt-eye2"></i></a>
             </li>
             <li class="single-product-item-action-list product-cart">
-                <a href="#" class="single-product-item-action-link"><i class="icon-rt-basket-outline"></i></a>
+                <a asp-controller="home" asp-action="addbasket" asp-route-id="@Model.Id" class="single-product-item-action-link"><i class="icon-rt-basket-outline"></i></a>
             </li>
         </ul>
     </div>

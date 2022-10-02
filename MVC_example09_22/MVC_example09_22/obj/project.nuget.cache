@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NcRXkTyWYMeftdi5WWTUTm87dbifQtLSFN93Enmpx7vymNOnnHJC1gzhpdc+C3BmpgXkc+FjNG1YImQ0ff7ZUg==",
+  "dgSpecHash": "5A9PMk6alh2mjSZBWOaJkih4e1iIgTa7Xo6jNRNckewrf+k6pu0Lk0JKlcH7UVbhXvLLxkwUYIraLrNdHbC4cw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sabir\\OneDrive\\Рабочий стол\\Новая папка (18)\\22-Sentyabr_E-Kommerce\\MVC_example09_22\\MVC_example09_22\\MVC_example09_22.csproj",
+  "projectFilePath": "C:\\Users\\sabir\\OneDrive\\Рабочий стол\\Новая папка (2)\\22-Sentyabr_E-Kommerce\\MVC_example09_22\\MVC_example09_22\\MVC_example09_22.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sabir\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\sabir\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
